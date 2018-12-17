@@ -1,0 +1,29 @@
+<h1>Search Results For {{ term.term }}</h1>
+{% extends 'index.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<ul>
+{% for t in tweets %}
+<li>
+  <h4>{{ t.text }}</h4>
+</li>
+<br>
+{% endfor %}
+</ul>
+
+{% if not tweets %}
+There are no saved tweets to display.
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<h1>My Tweet Collections</h1>
+
+{% extends 'index.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+{% if not collections %}
+There are no collections to display.
+{% else %}
+<ul>
+{% for c in collections %}
+    <li>
+        <a href="http://localhost:5000/collection/{{ c.id }}">{{ c.name }}</a>
+        <form action="delete/{{ c.name }}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.submit() }}
+        </form>
+        <form action="update/{{ c.name }}" method="POST">
+            {{ form2.hidden_tag() }}
+            {{ form2.submit() }}
+        </form>
+    </li>
+
+
+{% endfor %}
+</ul>
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

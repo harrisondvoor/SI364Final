@@ -1,0 +1,25 @@
+<h1>Create a new Tweet collection</h1>
+{% extends 'index.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name() }}
+    {{ form.tweet_picks.label }} {{ form.tweet_picks() }}
+    {{ form.submit.label }}{{ form.submit() }}
+</form>
+
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<h1> All Tweets </h1>
+{% extends 'index.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+<ul>
+{% for t in all_tweets %}
+<li>
+  <h4>{{ t.text }}</h4>
+</li>
+<br>
+{% endfor %}
+</ul>
+
+{% if not all_tweets %}
+There are no saved tweets to display.
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+<a href="{{ url_for('index')}}">Return to search for new tweets</a>
+{% endblock %}
